@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visão para todos</title><style>body{margin:0;background:#0b1220;color:#fff;font:19px/1.4 Verdana,Arial,sans-serif}main{max-width:480px;margin:auto;padding:14px}
+header{display:flex;gap:12px;align-items:center;padding:12px 14px;background:#12203a}header img{border-radius:50%;width:56px;height:56px}h1{font-size:1.3rem;margin:0}
+.chip{display:inline-block;margin-top:4px;padding:2px 10px;border-radius:12px;background:#1c2f55;font-size:.9rem}
+#cartao{background:#12203a;border-left:6px solid #4a90e2;border-radius:10px;padding:12px 14px;margin:12px 0}#status{font-size:1.35rem;margin:0}#heard,#itens{color:#9db7e5;font-size:.9rem;margin:6px 0 0}
+video{width:100%;max-height:30vh;object-fit:cover;border-radius:12px;background:#000}
+.bt{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}button{font:inherit;color:#fff;background:#1c2f55;border:2px solid #4a90e2;border-radius:12px;padding:14px 6px;font-weight:700}
+#cfg{background:#12203a;border-radius:10px;padding:12px}#cfg label{display:block;margin:8px 0 2px;font-size:.9rem}#cfg input{width:100%;box-sizing:border-box;padding:12px;font:inherit;border-radius:8px;border:2px solid #4a90e2;background:#0b1220;color:#fff}
+.aviso{font-size:.8rem;color:#9db7e5}a{color:#7db4ff}
+#comecar{position:fixed;inset:0;width:100%;height:100%;z-index:9;border:0;border-radius:0;background:#4a90e2;font-size:1.9rem;padding:24px}#aviso2{display:block;font-size:1rem;margin-top:14px}</style></head><body>
+<button id="comecar" aria-label="Visão para todos. Toque duas vezes em qualquer parte do ecrã para começar.">👁️ VISÃO PARA TODOS<br><br>TOQUE UMA VEZ NO ECRÃ PARA COMEÇAR</button>
+<header><img alt="" src="data:image/jpeg;base64,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"><div><h1>Visão para todos</h1><span id="estado" class="chip">⚪ Parado</span></div></header>
+<main>
+<section id="cartao" aria-live="polite"><p id="status">A iniciar…</p><p id="itens"></p><p id="heard"></p></section>
+<video id="video" playsinline muted></video>
+<div class="bt"><button id="bCam">▶ Ligar câmara</button><button id="bParar">⏹ Parar</button><button id="bRep">🔊 Repetir</button><button id="bCfg">⚙ Configurar</button></div>
+<p id="navInfo"></p><a id="navMap" hidden target="_blank">Abrir caminho no mapa</a>
+<section id="cfg" hidden><b>Configuração (para um ajudante)</b>
+<label for="iChave">Chave da inteligência artificial (Google AI Studio)</label><input id="iChave" type="password" autocomplete="off">
+<label for="iModelo">Modelo (deixe como está)</label><input id="iModelo" type="text">
+<button id="bGuardar" style="width:100%;margin-top:10px">Guardar e testar</button><p id="resCfg"></p>
+<p class="aviso">A chave fica só neste telemóvel. Não a partilhe. No plano gratuito, a Google pode usar as imagens para melhorar os seus modelos.</p></section>
+<p class="aviso">Protótipo de apoio. Não garante que o caminho esteja livre. Complementa a bengala e os óculos, não os substitui.</p>
+<input id="dest" hidden>
+</main>
+<script>const Voice = {
+  last: "Bem-vindo ao Visão Guia MZ.", falando: false, fim: 0, ativo: false, n: 0,
+  rate: 1,
+  say(texto) {
+    this.last = texto;
+    const el = document.getElementById("status");
+    if (el) el.textContent = texto;
+    if (window.Nativo) { Nativo.falar(texto); return; }
+    if ("speechSynthesis" in window) {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(texto);
+      u.lang = "pt-PT";
+      u.rate = this.rate;
+      const id = ++this.n; this.falando = true;
+      u.onend = u.onerror = () => { if (id === this.n) { this.falando = false; this.fim = Date.now(); } };
+      speechSynthesis.speak(u);
+    }
+  },
+  repeat() { this.say(this.last); }
+};
+
+// Reconhecimento de voz (ETAPA 2). Precisa de https e de permissão do microfone.
+Voice.listen = function (aoOuvir, aoFalhar) {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { aoFalhar("Este navegador não tem reconhecimento de voz. Abra no Chrome do Android ou escreva o comando."); return; }
+  const r = new SR();
+  r.lang = "pt-PT"; r.interimResults = false; r.maxAlternatives = 1;
+  r.onresult = (e) => aoOuvir(e.results[0][0].transcript);
+  r.onerror = (e) => aoFalhar(e.error === "not-allowed" || e.error === "service-not-allowed"
+    ? "O microfone não está autorizado aqui. Autorize o microfone ou escreva o comando."
+    : e.error === "no-speech" ? "Não ouvi nada. Toque em FALAR e tente outra vez." : "Não consegui ouvir (" + e.error + ").");
+  try { r.start(); } catch (x) { aoFalhar("Não consegui ligar o microfone."); }
+};
+
+// Escuta contínua, mãos-livres: reinicia sozinha e ignora o que o próprio celular diz.
+Voice.continuo = function (aoOuvir) {
+  if (window.Nativo) { this.ativo = true; window.aoOuvirNativo = aoOuvir; Nativo.escutar(); return true; }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { this.say("Este navegador não tem reconhecimento de voz. Use o Chrome do Android."); return false; }
+  this.ativo = true;
+  const iniciar = () => {
+    if (!this.ativo) return;
+    const r = new SR(); r.lang = "pt-PT"; r.continuous = true; r.interimResults = false;
+    r.onresult = (e) => { const t = e.results[e.results.length - 1][0].transcript;
+      if (!this.falando && Date.now() - this.fim > 800) aoOuvir(t); };
+    r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") { this.ativo = false; this.say("O microfone não está autorizado."); } };
+    r.onend = () => setTimeout(iniciar, 300);
+    try { r.start(); } catch (x) { setTimeout(iniciar, 1000); }
+    this.rec = r;
+  };
+  iniciar(); return true;
+};
+Voice.pararContinuo = function () { this.ativo = false; try { this.rec.stop(); } catch (e) {} };
+
+const $ = (s) => document.querySelector(s);
+let chave = localStorage.getItem("vpt_chave") || "", modelo = localStorage.getItem("vpt_modelo") || "gemini-flash-latest";
+let stream = null, timer = null, ocupado = false, ultSig = "", ultFala = 0, ultErro = 0, pausaAte = 0, esperaDestino = false, ultimoNP = 0;
+const AJUDA = "Pode falar à vontade. Por exemplo: liga a câmara. Quero ir ao mercado. O que está à frente. Lê o que está escrito. Desliga tudo. Repete.";
+const P_VER = `És os olhos de uma pessoa cega que caminha numa rua em Moçambique. O telemóvel está ao peito, a apontar em frente. Analisa a imagem e responde SÓ com JSON: {"perigo":"nenhum|baixo|alto","fala":"frase curta em português de Moçambique (máximo 18 palavras) a dizer o que está à frente, a posição (esquerda, frente ou direita), a distância aproximada em passos e o que fazer (parar, desviar para a esquerda ou direita, continuar)","itens":["nome de cada obstáculo"],"certeza":"alta|media|baixa"}. Nomeia cada obstáculo pelo nome (pessoa, carro, machimbombo, mota, poste, parede, buraco ou cova, escada para subir, escada para descer, degrau, poça, lixo, árvore, porta, etc.). Se não tens a certeza, começa a frase por "Possível". Nunca digas que o caminho é seguro; se não vês obstáculos diz "Não vejo obstáculos, avance com cuidado". Se vês cova, escadas, veículo em movimento ou desnível, perigo é "alto".`;
+const P_DESC = "Descreve em português de Moçambique, em 2 ou 3 frases curtas, o que está à frente de uma pessoa cega: obstáculos, posições, distâncias em passos, o chão e perigos. Se não tens a certeza, diz possível. Nunca digas que é seguro.";
+const P_LER = "Lê em voz alta, em português, o texto visível na imagem (placas, letreiros, número e destino de machimbombos, preços). Se não houver texto legível, diz: Não vejo texto legível.";
+
+function estado(on) { $("#estado").textContent = on ? "🟢 A ver" : "⚪ Parado"; }
+function quadro() {
+  const v = $("#video"), c = document.createElement("canvas"); c.width = 640; c.height = Math.round(640 * v.videoHeight / v.videoWidth);
+  c.getContext("2d").drawImage(v, 0, 0, c.width, c.height); return c.toDataURL("image/jpeg", 0.6).split(",")[1];
+}
+async function gemini(prompt, img, json, mod) {
+  const parts = [{ text: prompt }]; if (img) parts.push({ inline_data: { mime_type: "image/jpeg", data: img } });
+  const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + (mod || modelo) + ":generateContent?key=" + encodeURIComponent(chave),
+    { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ parts }], generationConfig: json ? { temperature: 0.2, responseMimeType: "application/json" } : { temperature: 0.3 } }) });
+  if (!r.ok) { const e = new Error("http " + r.status); e.status = r.status; throw e; }
+  const j = await r.json(); return j.candidates[0].content.parts[0].text;
+}
+function erro(e) {
+  $("#heard").textContent = "Erro: " + (e.status || e.message);
+  const t = Date.now(); if (t - ultErro < 15000) return; ultErro = t;
+  if (e.status === 429) { pausaAte = t + 30000; Voice.say("Limite da inteligência artificial atingido. Vou esperar um pouco."); }
+  else if (e.status === 403 || e.status === 400) Voice.say("A inteligência artificial recusou o pedido. Peça a alguém para verificar a chave em Configurar.");
+  else if (e.status === 404) Voice.say("O modelo de inteligência artificial mudou. Peça a alguém para tocar em Configurar e Guardar.");
+  else Voice.say("Sem ligação à inteligência artificial. Verifique a internet.");
+}
+async function ciclo() {
+  if (ocupado || !stream || Date.now() < pausaAte || !$("#video").videoWidth) return; ocupado = true;
+  try {
+    const d = JSON.parse((await gemini(P_VER, quadro(), true)).replace(/```json|```/g, ""));
+    $("#itens").textContent = (d.itens || []).join(", ") + " · perigo: " + d.perigo + " · certeza: " + d.certeza;
+    const sig = (d.itens || []).slice().sort().join("|") + d.perigo, agora = Date.now();
+    const espera = d.perigo === "alto" ? 5000 : d.perigo === "baixo" ? 9000 : 15000;
+    if (d.fala && (sig !== ultSig || agora - ultFala > espera)) { ultSig = sig; ultFala = agora; Voice.say(d.fala); }
+  } catch (e) { erro(e); } finally { ocupado = false; }
+}
+async function iniciarCamera(quieto) {
+  if (stream) { if (!quieto) Voice.say("A câmara já está ligada."); return; }
+  if (!chave) return Voice.say("Falta configurar a chave da inteligência artificial. Peça a alguém para tocar em Configurar.");
+  try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }); }
+  catch (e) { return Voice.say("Não consegui abrir a câmara. Verifique a permissão."); }
+  $("#video").srcObject = stream; await $("#video").play(); estado(true);
+  if (!quieto) Voice.say("Câmara ligada. Aponte o celular para a frente, na vertical. Sou um protótipo e posso errar.");
+  timer = setInterval(ciclo, 5000);
+}
+function pararCamera() { clearInterval(timer); timer = null; if (stream) stream.getTracks().forEach((t) => t.stop()); stream = null; $("#video").srcObject = null; estado(false); }
+async function pergunta(prompt) {
+  if (!chave) return Voice.say("Falta configurar a chave da inteligência artificial.");
+  const estavaOff = !stream; if (estavaOff) { await iniciarCamera(true); await new Promise((r) => setTimeout(r, 1500)); }
+  try { Voice.say("Um momento."); const t = await gemini(prompt, quadro(), false); Voice.say(t.replace(/[*#_`]/g, "").trim()); }
+  catch (e) { erro(e); }
+  if (estavaOff) pararCamera();
+}
+// ==INICIO-CMD==
+function limpar(t) { return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[.,!?]/g, "").replace(/-/g, " ").trim(); }
+function lugar(t) {
+  const m = t.match(/\b(?:ir|levar|leva|guiar|guia|procurar|procura|encontrar|encontra|direcoes|fica)\b(.*)$/);
+  if (!m) return null;
+  let p = m[1].trim().replace(/^me\s+/, "").replace(/^(?:para|ate|ao|aos|a|as|na|no|em|de|pelo|pela)\s+/, "").replace(/^(?:o|a|os|as|um|uma)\s+/, "");
+  for (let i = 0; i < 3; i++) p = p.replace(/\s+(?:mais proximo|mais perto|perto de mim|por favor|agora|se faz favor|aqui perto|ai perto|perto)$/, "").trim();
+  if (!p || /obstacul|objecto|camera|cova|escada|frente|caminhada/.test(p)) return null;
+  return p;
+}
+function tratar(texto) {
+  const t = limpar(texto); if (!t) return;
+  const w = t.split(/\s+/), diz = (re) => re.test(t);
+  if (esperaDestino) { esperaDestino = false; if (/^(parar|cancelar|cancela|nada)$/.test(t)) return Voice.say("Cancelado."); return iniciarNav(texto); }
+  const cam = diz(/\bcam[ae]ra\b/);
+  const parar = diz(/\b(parar|pare|stop|chega|desligar|desliga|fechar|fecha|cancelar|cancela|terminar|termina|silencio|acabou|sair)\b|\bpara de\b/) || (w.length <= 2 && /^para\b/.test(t));
+  const l = lugar(t);
+  if (l && !parar) return iniciarNav(l);
+  if (parar) { pararCamera(); if (cam) return Voice.say("Câmara desligada."); pararNav(); return Voice.say("Parado."); }
+  if (diz(/\b(le|ler|leia|escrito|texto|placa|letreiro)\b/)) return pergunta(P_LER);
+  if (diz(/\bo que (esta|ha|tem|vejo|ve)\b|\bdescreve|\bque (objectos?|obstaculos?)\b|\bdiz.*frente\b/)) return pergunta(P_DESC);
+  if (diz(/\b(navegacao|gps|mapa|navegar)\b/)) { esperaDestino = true; setTimeout(() => { esperaDestino = false; }, 20000); return Voice.say("Para onde quer ir?"); }
+  if (cam || diz(/\b(ligar|liga|activar|activa|ativar|ativa|iniciar|inicia|comecar|comeca|caminhada|caminhar|andar|arranca|vamos|obstaculos?|objectos?)\b/)) return iniciarCamera();
+  if (diz(/repet|outra vez|de novo|nao percebi/)) return Voice.repeat();
+  if (diz(/\b(ajuda|comandos)\b|como (funciona|uso)|o que (posso|consigo)/)) return Voice.say(AJUDA);
+  if (w.length >= 3 && Date.now() - ultimoNP > 15000) { ultimoNP = Date.now(); Voice.say("Não percebi. Pode dizer, por exemplo: liga a câmara, ou quero ir ao mercado."); }
+}
+// ==FIM-CMD==
+// Navegação a pé (ETAPA 7). Serviços gratuitos do OpenStreetMap, sem API KEY:
+// Nominatim (procura o destino) e routing.openstreetmap.de (calcula o caminho a pé).
+let watchNav = null, passos = [], passo = 0, destino = null, avisouPerto = false;
+function dist(a, b) {
+  const r = Math.PI / 180, R = 6371000, p = (b[0] - a[0]) * r, l = (b[1] - a[1]) * r;
+  const q = Math.sin(p / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(l / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(q));
+}
+const posicao = () => new Promise((ok, erro) => navigator.geolocation.getCurrentPosition(
+  (p) => ok([p.coords.latitude, p.coords.longitude]), erro, { enableHighAccuracy: true, timeout: 15000 }));
+function instrucao(s) {
+  const m = s.maneuver; if (m.type === "arrive") return "Chegou ao destino.";
+  const mod = { left: "Vire à esquerda", right: "Vire à direita", "slight left": "Mantenha-se ligeiramente à esquerda",
+    "slight right": "Mantenha-se ligeiramente à direita", "sharp left": "Vire bem à esquerda",
+    "sharp right": "Vire bem à direita", uturn: "Volte para trás" }[m.modifier];
+  return mod || "Continue em frente.";
+}
+async function iniciarNav(nome) {
+  if (!navigator.geolocation) return Voice.say("Este aparelho não permite usar o GPS no navegador.");
+  if (!nome) return Voice.say("Diga ou escreva o destino.");
+  pararNav(); Voice.say("A procurar " + nome + ". Aguarde.");
+  try {
+    const a = await posicao();
+    let g = [];
+    for (const d of [0.02, 0.06, 0.2]) {   // procura cada vez mais longe, e escolhe o MAIS PRÓXIMO
+      const vb = [a[1] - d, a[0] + d, a[1] + d, a[0] - d].join(",");
+      g = await (await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=10&accept-language=pt&bounded=1&viewbox=" + vb + "&q=" + encodeURIComponent(nome))).json();
+      if (g.length) break;
+    }
+    if (!g.length) g = await (await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=mz&accept-language=pt&q=" + encodeURIComponent(nome))).json();
+    g.sort((x, y) => dist(a, [+x.lat, +x.lon]) - dist(a, [+y.lat, +y.lon]));
+    if (!g.length) return Voice.say("Não encontrei " + nome + ". Tente dizer o nome de outra forma.");
+    destino = [+g[0].lat, +g[0].lon];
+    const r = await (await fetch(`https://routing.openstreetmap.de/routed-foot/route/v1/foot/${a[1]},${a[0]};${destino[1]},${destino[0]}?steps=true&overview=false`)).json();
+    if (r.code !== "Ok") return Voice.say("Não consegui calcular o caminho a pé.");
+    passos = r.routes[0].legs[0].steps; passo = 0; avisouPerto = false;
+    const mapa = document.getElementById("navMap");
+    mapa.href = `https://www.openstreetmap.org/directions?engine=fossgis_osrm_foot&route=${a[0]},${a[1]};${destino[0]},${destino[1]}`; mapa.hidden = false;
+    document.getElementById("navInfo").textContent = "Destino: " + g[0].display_name;
+    Voice.say("Encontrei " + g[0].display_name.split(",")[0] + ", a " + Math.round(r.routes[0].distance) + " metros. Aponte o celular para a frente, na vertical. Continue em frente por " + Math.round(passos[0].distance) + " metros.");
+    iniciarCamera(true);
+    watchNav = navigator.geolocation.watchPosition(seguir, () => Voice.say("Perdi o sinal do GPS."), { enableHighAccuracy: true, maximumAge: 2000 });
+  } catch (e) { Voice.say("Não consegui iniciar a navegação. Verifique o GPS e a internet."); }
+}
+function seguir(p) {
+  const eu = [p.coords.latitude, p.coords.longitude];
+  if (dist(eu, destino) < 25) { Voice.say("Chegou ao destino."); return pararNav(); }
+  if (dist(eu, destino) < 80 && !avisouPerto) { avisouPerto = true; Voice.say("Está próximo do destino."); }
+  const prox = passos[passo + 1]; if (!prox) return;
+  const m = prox.maneuver.location;
+  if (dist(eu, [m[1], m[0]]) < 25) {
+    passo++;
+    Voice.say(instrucao(prox) + (prox.maneuver.type === "arrive" ? "" : " Depois continue por " + Math.round(prox.distance) + " metros."));
+  }
+}
+function pararNav() { if (watchNav !== null) navigator.geolocation.clearWatch(watchNav); watchNav = null; }
+
+
+$("#bCam").onclick = () => iniciarCamera();
+$("#bParar").onclick = () => tratar("parar");
+$("#bRep").onclick = () => Voice.repeat();
+$("#bCfg").onclick = () => { $("#cfg").hidden = !$("#cfg").hidden; $("#iChave").value = chave; $("#iModelo").value = modelo; };
+$("#bGuardar").onclick = async () => {
+  chave = $("#iChave").value.trim(); let ultimo = null;
+  const lista = [$("#iModelo").value.trim(), "gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.5-flash-lite"].filter((x, i, a) => x && a.indexOf(x) === i);
+  $("#resCfg").textContent = "A testar…";
+  for (const m of lista) {
+    try {
+      await gemini("Responde só: ok", null, false, m); modelo = m;
+      localStorage.setItem("vpt_chave", chave); localStorage.setItem("vpt_modelo", m);
+      $("#resCfg").textContent = "✅ Funciona (modelo " + m + ")"; return Voice.say("Chave configurada. Está tudo pronto.");
+    } catch (e) {
+      if (e.status === 400 || e.status === 403) { $("#resCfg").textContent = "❌ Chave recusada (erro " + e.status + ")"; return; }
+      if (e.status === 429) { localStorage.setItem("vpt_chave", chave); $("#resCfg").textContent = "⚠️ Limite atingido. Chave guardada; tente mais tarde."; return; }
+      ultimo = e;
+    }
+  }
+  $("#resCfg").textContent = "❌ Falhou: " + (ultimo && (ultimo.status || ultimo.message)) + ". Verifique a internet.";
+};
+async function arrancar() {
+  $("#comecar").hidden = true;
+  try { if (navigator.wakeLock) await navigator.wakeLock.request("screen"); } catch (e) {}
+  Voice.say("Visão para todos. " + (chave ? "Pronto. " + AJUDA : "Falta configurar a chave da inteligência artificial. Peça a alguém para tocar em Configurar."));
+  Voice.continuo((t) => { $("#heard").textContent = "Ouvi: " + t; if (navigator.vibrate) navigator.vibrate(60); tratar(t); });
+}
+$("#comecar").onclick = arrancar;
+if (!chave) $("#cfg").hidden = false;
+if (window.Nativo) setTimeout(arrancar, 800);
+</script></body></html>
